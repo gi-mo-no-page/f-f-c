@@ -1,0 +1,10 @@
+<h1>詳細ページ</h1>
+
+<div><%= image_tag @comic.image %></div>
+  <div><%= @comic.name %></div>
+  <div><%= @comic.author %></div>
+  <div><%= @comic.volume %></div>
+
+<%= link_to  "編集する",  edit_comic_path, method: :get, class: "#" %>
+<%= link_to '削除', comic_path, method: :delete, class:'#' %>
+<%= link_to  "もどる", root_path %>

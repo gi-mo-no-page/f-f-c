@@ -1,24 +1,83 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# テーブル設計
 
-Things you may want to cover:
+## users テーブル
 
-* Ruby version
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| nickname | string | null: false |
+| email    | string | null: false |
+| password | string | null: false |
 
-* System dependencies
+### Association
+- has_many :comics
+- has_many :posts
+- has_one  :profile
+- has_one  :like
 
-* Configuration
 
-* Database creation
+## profiles テーブル
 
-* Database initialization
+| Column        | Type       | Options     |
+| ------------- | ---------- | ----------- |
+| like_category | string     |             |
+| like_comic    | string     |             |
+| introduction  | string     |             |
+| user_id       | references | null: false, foreign_key: true|
 
-* How to run the test suite
+### Association
+- belongs_to  :user
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## comics テーブル
 
-* ...
+| Column       | Type       | Options     |
+| -------------| ---------- | ----------- |
+| name         | string     | null: false |
+| author       | string     | null: false |
+| volume       | integer    | null: false |
+| magazine_id  | string     | null: false |
+| genre_id     | integer    | null: false |
+| user_id      | references | null: false, foreign_key: true|
+
+### Association
+- has_many :posts
+- has_one  :category
+- has_one  :like
+- belongs_to  :user
+
+
+## categories テーブル
+
+| Column      | Type       | Options     |
+| ----------- | ---------- | ----------- |
+| name        | string     | null: false |
+| ancestor    | string     | null: false |
+
+- belongs_to  :comic
+
+
+## posts テーブル
+
+| Column      | Type       | Options     |
+| ----------- | ---------- | ----------- |
+| text        | string     | null: false |
+| user_id     | references | null: false, foreign_key: true|
+| comic_id    | references | null: false, foreign_key: true|
+
+- belongs_to  :user
+- belongs_to  :comic
+
+## likes テーブル
+
+| Column      | Type       | Options     |
+| ----------- | ---------- | ----------- |
+| user_id     | references | null: false, foreign_key: true|
+| comic_id    | references | null: false, foreign_key: true|
+
+- belongs_to  :user
+- belongs_to  :comic
+
+
+

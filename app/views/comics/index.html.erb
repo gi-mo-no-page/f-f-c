@@ -1,0 +1,13 @@
+<h1>TOPページ</h1>
+
+ <% @comics.each do |comic| %>
+  <%= link_to comic_path(comic.id) do %>
+  <div><%= image_tag comic.image %></div>
+  <% end %>
+  <div><%= comic.name %></div>
+  <div><%= comic.author %></div>
+  <div><%= comic.volume %></div>
+<% end %> 
+
+
+<%= link_to  "投稿する", new_comic_path %>
