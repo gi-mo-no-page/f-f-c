@@ -1,10 +1,10 @@
 <h1>プロフィール編集</h1>
  <%= form_with model: [@user,@profile], url: user_profile_path, local: true do |f| %>
-  <%= f.file_field :image, id:"#" %>
+  <%= f.file_field :image, id:"image" %>
   <%= f.text_area :introduction, class:"#", id:"#", placeholder:"自己紹介" %>
   <%= f.text_field :like_category, class:"#", id:"#", placeholder:"好きなジャンル" %>
   <%= f.text_field :best_comic, class:"#", id:"#", placeholder:"一番好きなコミックス" %>
   <%= f.submit "更新" %>
-
+ <div id="image-list"></div>
   <%= link_to  "もどる", user_path %>
  <% end %>
