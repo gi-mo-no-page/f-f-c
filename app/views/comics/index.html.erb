@@ -9,7 +9,7 @@
 </div>
  <% @comics.each do |comic| %>
   <%= link_to comic_path(comic.id) do %>
-  <div class="#"><%= image_tag comic.image %></div>
+  <div class="#"><%= image_tag comic.image.variant(resize:'200x200')%></div>
   <% end %>
   <div><%= "タイトル：#{comic.name}" %></div>
   <div><%= "作者：#{comic.author}" %></div>

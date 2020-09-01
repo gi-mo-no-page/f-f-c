@@ -22,7 +22,7 @@
 | Column        | Type       | Options     |
 | ------------- | ---------- | ----------- |
 | like_category | string     |             |
-| like_comic    | string     |             |
+| best_comic    | string     |             |
 | introduction  | string     |             |
 | user_id       | references | null: false, foreign_key: true|
 

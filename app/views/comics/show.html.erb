@@ -20,7 +20,7 @@
       <% if @posts %>
         <% @posts.reverse_each do |post| %>
           <ul class="post_group">
-            <li><%= post.text %></li>
+            <li><%="#{post.user.nickname} ：#{post.text}" %></li>
           </ul>
         <% end %>
       <% end %>

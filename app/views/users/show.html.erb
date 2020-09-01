@@ -1,1 +1,22 @@
-<h1>ユーザーマイページ</h1>
+<h1>マイページ</h1>
+<% if @profile != nil %>
+<div><%= image_tag @profile.image.variant(resize:'70x70') %></div>
+<% end %>
+<div><%= "ユーザー：#{@user.nickname}" %></div>
+<div><%= "Email：#{@user.email}" %></div>
+<%= link_to  "ユーザー情報の編集", edit_user_path %>
+
+<p>[プロフィール]</p>
+<% if @profile != nil %>
+  <div><%= "自己紹介：#{@profile.introduction}" %></div>
+  <div><%= "好きなマンガ：#{@profile.best_comic}" %></div>
+  <div><%= "好きなジャンル：#{@profile.like_category}" %></div>
+<% else %>
+  <p>プロフィールを登録してね！</p>
+<% end %>
+
+<%= link_to  "プロフィール登録", new_user_profile_path(@user.id) %>
+<% if @profile != nil %>
+<%= link_to  "プロフィール編集", edit_user_profile_path(@user.id) %>
+<% end %>
+<%= link_to  "もどる", root_path %>

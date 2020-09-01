@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
          has_many :comics
          has_many :posts
+         has_one :profile
 end

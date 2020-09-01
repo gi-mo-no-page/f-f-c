@@ -2,7 +2,7 @@ class ComicsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
   before_action :set_comic, only: [:edit, :update, :show, :destroy]
     def index
-      @comics = Comic.all
+      @comics = Comic.all.order(id: 'DESC')
     end
   
     def new
