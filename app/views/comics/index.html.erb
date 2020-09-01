@@ -1,12 +1,19 @@
 <h1>TOPページ</h1>
-
+<div>
+ <%= form_with(url: search_comics_path, local: true, method: :get, class: "#") do |form| %>
+    <%= form.text_field :keyword, placeholder: "キーワードから探す", class: "#" %>
+    <button class="#">
+      <%= image_tag "search.png", class:"#" %>
+    </button>
+    <% end %>
+</div>
  <% @comics.each do |comic| %>
   <%= link_to comic_path(comic.id) do %>
-  <div><%= image_tag comic.image %></div>
+  <div class="#"><%= image_tag comic.image %></div>
   <% end %>
-  <div><%= comic.name %></div>
-  <div><%= comic.author %></div>
-  <div><%= comic.volume %></div>
+  <div><%= "タイトル：#{comic.name}" %></div>
+  <div><%= "作者：#{comic.author}" %></div>
+  <div><%= "発行巻数：#{comic.volume}" %></div>
 <% end %> 
 
 

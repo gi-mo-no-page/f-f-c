@@ -5,6 +5,28 @@
   <div><%= @comic.author %></div>
   <div><%= @comic.volume %></div>
 
+<div>
+  <% if user_signed_in? %>
+    <%= form_with(model: [@comic, @post], local: true, id: "form") do |form| %>
+    <%= form.text_area :text, placeholder: "コメントはこちら", class:"#", rows: "2", id: "text"%>
+    <%= form.submit value:"コメントする" ,class:"#", id: "submit"%>
+    <% end %>
+  <% else %>
+    <strong><p>※コメントの投稿は新規登録orログインをお願いします※</p></strong>
+  <% end %>
+
+  <div class="#" >
+      <h4 class="#">＜コメント一覧＞</h4>
+      <% if @posts %>
+        <% @posts.reverse_each do |post| %>
+          <ul class="post_group">
+            <li><%= post.text %></li>
+          </ul>
+        <% end %>
+      <% end %>
+  </div>
+</div>
+
 <%= link_to  "編集する",  edit_comic_path, method: :get, class: "#" %>
 <%= link_to '削除', comic_path, method: :delete, class:'#' %>
 <%= link_to  "もどる", root_path %>

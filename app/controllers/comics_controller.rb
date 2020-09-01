@@ -19,6 +19,8 @@ class ComicsController < ApplicationController
     end
   
     def show
+      @post = Post.new
+      @posts = @comic.posts.includes(:user)
     end
 
     def edit
@@ -38,6 +40,10 @@ class ComicsController < ApplicationController
       else
         render :show
       end
+    end
+
+    def search
+      @comics = Comic.search(params[:keyword])
     end
   
     private

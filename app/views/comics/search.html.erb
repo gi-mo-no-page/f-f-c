@@ -1,0 +1,12 @@
+<h1>検索結果</h1>
+
+<% @comics.each do |comic| %>
+  <%= link_to comic_path(comic.id) do %>
+  <div><%= image_tag comic.image %></div>
+  <% end %>
+  <div>タイトル<%= comic.name %></div>
+  <div><%= comic.author %></div>
+  <div><%= comic.volume %></div>
+<% end %> 
+
+<%= link_to  "もどる", root_path %>
