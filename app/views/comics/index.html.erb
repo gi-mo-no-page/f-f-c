@@ -1,4 +1,6 @@
 <h1>TOPページ</h1>
+
+<%= link_to  "投稿する", new_comic_path %>
 <%= link_to  "カテゴリー", categories_path %>
 <div>
  <%= form_with(url: search_comics_path, local: true, method: :get, class: "#") do |form| %>
@@ -15,7 +17,21 @@
   <div><%= "タイトル：#{comic.name}" %></div>
   <div><%= "作者：#{comic.author}" %></div>
   <div><%= "発行巻数：#{comic.volume}" %></div>
+  <div ><%= "評価：#{comic.rate}" %></div>
+
+  <!--星評価-->
+<div id="star-<%= comic.id %>"></div>
+<script>
+$('#star-<%= comic.id %>').raty({
+  size: 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: '<%= asset_path('star-half.png') %>',
+  readOnly: true,
+  score: <%= comic.rate %>,
+});
+</script>  
+<!--/星評価-->
+
 <% end %> 
 
-
-<%= link_to  "投稿する", new_comic_path %>

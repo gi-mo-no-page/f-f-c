@@ -49,7 +49,7 @@ class ComicsController < ApplicationController
     private
 
     def comic_params
-      params.require(:comic).permit(:image, :name, :author,:volume, :magazine_id, :genre_id).merge(user_id: current_user.id)
+      params.require(:comic).permit(:image, :name, :author,:volume, :magazine_id, :genre_id, :rate).merge(user_id: current_user.id)
     end
 
     def move_to_index

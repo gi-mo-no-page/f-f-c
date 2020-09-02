@@ -1,9 +1,10 @@
 <h1>詳細ページ</h1>
 
 <div><%= image_tag @comic.image %></div>
-  <div><%= @comic.name %></div>
-  <div><%= @comic.author %></div>
-  <div><%= @comic.volume %></div>
+  <div><%= "タイトル：#{@comic.name}" %></div>
+  <div><%= "作者：#{@comic.author}" %></div>
+  <div><%= "発行巻数：#{@comic.volume}" %></div>
+  <div id="star"><%= "評価：#{@comic.rate}" %></div>
 
 <div>
   <% if user_signed_in? %>
