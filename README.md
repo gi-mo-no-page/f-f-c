@@ -39,6 +39,7 @@
 | volume       | integer    | null: false |
 | magazine_id  | string     | null: false |
 | genre_id     | integer    | null: false |
+| rate         | integer    |             |
 | user_id      | references | null: false, foreign_key: true|
 
 ### Association
