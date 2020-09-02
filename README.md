@@ -49,16 +49,6 @@
 - belongs_to  :user
 
 
-## categories テーブル
-
-| Column      | Type       | Options     |
-| ----------- | ---------- | ----------- |
-| name        | string     | null: false |
-| ancestor    | string     | null: false |
-
-- belongs_to  :comic
-
-
 ## posts テーブル
 
 | Column      | Type       | Options     |
