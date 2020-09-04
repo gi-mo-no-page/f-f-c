@@ -1,36 +1,103 @@
-<h1 class="btn btn-info">TOPページ</h1>
 
-<%= link_to  "投稿する", new_comic_path %>
-<%= link_to  "カテゴリー", categories_path %>
-<div>
- <%= form_with(url: search_comics_path, local: true, method: :get, class: "#") do |form| %>
-    <%= form.text_field :keyword, placeholder: "キーワードから探す", class: "#" %>
-    <button class="#">
-      <%= image_tag "search.png", class:"" %>
-    </button>
+<%= render "shared/header" %>
+
+<div class="main">
+  <div class="side">
+   <ul class="side-bar">
+   <% if user_signed_in? %>
+      <li class="side-list"><%= link_to "#{current_user.nickname}さん", user_path(current_user.id) %></li>
+    <% else %>
+      <li>ログインしたらマイページにいけます</li>
     <% end %>
-</div>
- <% @comics.each do |comic| %>
-  <%= link_to comic_path(comic.id) do %>
-  <div><%= image_tag comic.image.variant(resize:'200x200')%></div>
-  <% end %>
-  <div><%= "タイトル：#{comic.name}" %></div>
-  <div><%= "作者：#{comic.author}" %></div>
-  <div><%= "発行巻数：#{comic.volume}" %></div>
-  <div ><%= "評価：#{comic.rate}" %></div>
+     <li class="side-list"><%= link_to  "投稿する", new_comic_path %></li>
+     <li class="side-list"><%= link_to  "カテゴリー", categories_path %></li>
+   </ul>
+  </div>
 
-  <!--星評価-->
-<div id="star-<%= comic.id %>"></div>
-<script>
-$('#star-<%= comic.id %>').raty({
-  size: 36,
-  starOff:  '<%= asset_path('star-off.png') %>',
-  starOn : '<%= asset_path('star-on.png') %>',
-  starHalf: '<%= asset_path('star-half.png') %>',
-  readOnly: true,
-  score: <%= comic.rate %>,
-});
-</script>  
-<!--/星評価-->
-<% end %> 
+  <div class="center">
+  <div class="post-all">＜NEW POST＞</div>
+   <div class="comics overflow-auto">
+    <% @comics.each do |comic| %>
+    <div class="comic-list">
+    <span class="post-name">
+    <%= "#{comic.user.nickname}さんのオススメ！" %>
+    </span><br>
+      <%= link_to comic_path(comic.id) do %>
+      <div class="comic-image">
+        <%= image_tag comic.image, class: "comic-img"%>
+      </div>
+      <% end %>
+     <div class='comic-info'>
+      <%= "タイトル：#{comic.name}" %><br>
+      <%= "作者：#{comic.author}" %><br>
+      <%= "発行巻数：#{comic.volume}" %><br>
+      <%= "評価：#{comic.rate}" %><br>
 
+      <!--星評価-->
+     <div id="star-<%= comic.id %>"></div><!--star-->
+        <script>
+        $('#star-<%= comic.id %>').raty({
+          size: 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          readOnly: true,
+          score: <%= comic.rate %>,
+        });
+        </script> 
+      </div><!--comic-info-->
+    </div><!--comic-list-->
+    <!--/星評価-->
+    <% end %> 
+    </div><!--comics-->
+
+    <div class="ranking">
+    <span class="magazine-rank">＜HOT MAGAZINE＞</span>
+      <div class="jamp">
+        <div class="magazine-title">
+        少年ジャンプ
+        </div>
+        <div class="">
+        <%= link_to category_path(1) do %>
+         <%= image_tag asset_path('download-5.jpg'),:size =>'250x250' %>
+         <% end %>
+         <p>圧倒的少年誌！！</p>
+        </div>
+      </div>
+
+      <div class="y-maga">
+        <div class="magazine-title">
+        ヤングマガジン
+        </div>
+        <div>
+          <%= link_to category_path(6) do %>
+          <%= image_tag asset_path('download-6.jpg',class:"magazine-image"),:size =>'250x250' %>
+          <% end %>
+        </div>
+        <p>圧倒的青年誌！！</p>
+      </div>
+
+      <div class="bigcomic">
+        <div class="magazine-title">
+          ビッグコミック
+        </div>
+         <%= link_to category_path(9) do %>
+         <%= image_tag asset_path('download.png'),:size =>'250x250' %>
+         <% end %>
+         <p>圧倒的青年誌！！</p>
+      </div>
+      <div class="morning">
+        <div class="magazine-title">
+        モーニング
+        </div>
+        <%= link_to category_path(10) do %>
+        <%= image_tag asset_path('download-2.png'),:size =>'250x250' %>
+        <% end %>
+        <p>圧倒的青年誌！！</p>
+      </div>
+
+    </div><!--ranking-->
+  </div><!--center-->
+</div><!-- main-->
+
+<%= render "shared/footer" %>

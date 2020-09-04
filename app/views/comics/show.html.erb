@@ -1,12 +1,24 @@
-<h1>詳細ページ</h1>
+<%= render "shared/header" %>
 
-<div><%= image_tag @comic.image %></div>
-  <div><%= "タイトル：#{@comic.name}" %></div>
-  <div><%= "作者：#{@comic.author}" %></div>
-  <div><%= "発行巻数：#{@comic.volume}" %></div>
+<div class="show-main">
+<div class="show-image">
+<%= image_tag @comic.image, :size =>'350x500'%>
+ <%= "タイトル：#{@comic.name}" %>
+ <%= "作者：#{@comic.author}" %>
+ <%= "発行巻数：#{@comic.volume}" %>
   <div id="star"><%= "評価：#{@comic.rate}" %></div>
-
-<div>
+  <script>
+        $('#star').raty({
+          size: 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          readOnly: true,
+          score: <%= @comic.rate %>,
+        });
+        </script> 
+ </div>
+<div class="comment">
   <% if user_signed_in? %>
     <%= form_with(model: [@comic, @post], local: true, id: "form") do |form| %>
     <%= form.text_area :text, placeholder: "コメントはこちら", class:"#", rows: "2", id: "text"%>
@@ -26,8 +38,12 @@
         <% end %>
       <% end %>
   </div>
-</div>
-
 <%= link_to  "編集する",  edit_comic_path, method: :get, class: "#" %>
 <%= link_to '削除', comic_path, method: :delete, class:'#' %>
+
+</div>
+
 <%= link_to  "もどる", root_path %>
+
+</div>
+<%= render "shared/footer" %>
