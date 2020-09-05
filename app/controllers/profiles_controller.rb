@@ -21,8 +21,9 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.find(params[:id])
-    if @profile.update(profile_params)
-      redirect_to user_path(current_user.id)
+    
+    if @profile.update(profiles_params)
+      redirect_to user_path
     else
       render :edit
     end
@@ -35,6 +36,10 @@ class ProfilesController < ApplicationController
   private
   def profile_params
     params.require(:profile).permit(:image, :introduction, :like_category, :best_comic).merge(user_id: current_user.id)
+  end
+
+  def profiles_params
+    params.require(:profile).permit(:image, :introduction, :like_category, :best_comic)
   end
 
 
