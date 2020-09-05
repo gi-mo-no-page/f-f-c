@@ -1,4 +1,3 @@
-
 <% @comics.each do |comic| %>
     <div><%= "雑誌：#{comic.magazine[:name]}" %></div>
   <%= link_to comic_path(comic.id) do %>

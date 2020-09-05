@@ -1,13 +1,27 @@
 
-<h1 class="new-title">検索結果</h1>
-
+<h1 class="new-title">＜検索結果＞</h1>
+<div class="search-result">
 <% @comics.each do |comic| %>
   <%= link_to comic_path(comic.id) do %>
   <div><%= image_tag comic.image %></div>
   <% end %>
-  <div>タイトル<%= comic.name %></div>
-  <div><%= comic.author %></div>
-  <div><%= comic.volume %></div>
-<% end %> 
+      <%= "タイトル：#{comic.name}" %><br>
+      <%= "作者：#{comic.author}" %><br>
+      <%= "発行巻数：#{comic.volume}" %><br>
+      <%= "評価：#{comic.rate}" %><br>
 
+      <!--星評価-->
+     <div id="star-<%= comic.id %>"></div><!--star-->
+        <script>
+        $('#star-<%= comic.id %>').raty({
+          size: 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          readOnly: true,
+          score: <%= comic.rate %>,
+        });
+        </script> 
+<% end %> 
+</div>
 <%= link_to  "もどる", root_path %>
