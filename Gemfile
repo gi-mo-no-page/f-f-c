@@ -60,3 +60,7 @@ gem 'devise'
 gem 'pry-rails'
 gem 'bootstrap', '~> 4.5.2'
 gem 'jquery-rails'
+
+group :production do
+  gem 'rails_12factor'
+end
