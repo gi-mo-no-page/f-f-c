@@ -1,12 +1,12 @@
-<%= render "shared/header" %>
 
 <div class="show-main">
 <div class="show-image">
+<br>
 <%= image_tag @comic.image, :size =>'350x500'%>
- <%= "タイトル：#{@comic.name}" %>
- <%= "作者：#{@comic.author}" %>
- <%= "発行巻数：#{@comic.volume}" %>
-  <div id="star"><%= "評価：#{@comic.rate}" %></div>
+ <div><%= "タイトル：#{@comic.name}" %></div>
+ <div><%= "作者：#{@comic.author}" %></div>
+ <div><%= "発行巻数：#{@comic.volume}" %></div>
+  <div id="star">評価：</div><br>
   <script>
         $('#star').raty({
           size: 36,
@@ -16,20 +16,29 @@
           readOnly: true,
           score: <%= @comic.rate %>,
         });
-        </script> 
+        </script>
+    <%= link_to  "編集する",  edit_comic_path, method: :get, class: "post_group" %>
+<%= link_to '削除する', comic_path, method: :delete, class:'post_group' %>
+
  </div>
 <div class="comment">
   <% if user_signed_in? %>
+  <div>
     <%= form_with(model: [@comic, @post], local: true, id: "form") do |form| %>
-    <%= form.text_area :text, placeholder: "コメントはこちら", class:"#", rows: "2", id: "text"%>
-    <%= form.submit value:"コメントする" ,class:"#", id: "submit"%>
+    <div class="comment-area">
+      <%= form.text_area :text, placeholder: "コメントはこちら", class:"comment-area", rows: "2", id: "text"%>
+    </div>
+    <div class="comment-btn">
+      <%= form.submit value:"コメントする" ,class:"comment-btn", id: "submit"%>
+    </div>
     <% end %>
   <% else %>
     <strong><p>※コメントの投稿は新規登録orログインをお願いします※</p></strong>
   <% end %>
+  </div>
 
-  <div class="#" >
-      <h4 class="#">＜コメント一覧＞</h4>
+  <div class="post_group" >
+      <h4 class="post_group">＜コメント一覧＞</h4>
       <% if @posts %>
         <% @posts.reverse_each do |post| %>
           <ul class="post_group">
@@ -38,12 +47,9 @@
         <% end %>
       <% end %>
   </div>
-<%= link_to  "編集する",  edit_comic_path, method: :get, class: "#" %>
-<%= link_to '削除', comic_path, method: :delete, class:'#' %>
 
 </div>
 
-<%= link_to  "もどる", root_path %>
+<%= link_to  "TOPにもどる", root_path %>
 
 </div>
-<%= render "shared/footer" %>

@@ -1,6 +1,6 @@
-<h1>詳細カテゴリー</h1>
 
 <% @comics.each do |comic| %>
+    <div><%= "雑誌：#{comic.magazine[:name]}" %></div>
   <%= link_to comic_path(comic.id) do %>
   <div class="#"><%= image_tag comic.image.variant(resize:'200x200')%></div>
   <% end %>
@@ -8,3 +8,5 @@
   <div><%= "作者：#{comic.author}" %></div>
   <div><%= "発行巻数：#{comic.volume}" %></div>
 <% end %> 
+<h3><%= link_to  "もどる", root_path %><h3>
+

@@ -1,29 +1,38 @@
-<h1>編集ページ</h1>
-<div class="#">
- <%= form_with model: @comic, local: true do |f| %>
-  <%= f.file_field :image, id:"image" %>
-  <%= f.text_area :name, class:"#", id:"#", placeholder:"タイトル" %>
-  <%= f.text_field :author, class:"#", id:"#", placeholder:"作者" %>
-  <%= f.text_field :volume, class:"#", id:"#", placeholder:"巻数" %>
-  <%= f.collection_select(:magazine_id, Magazine.all, :id, :name, {prompt: "---"}, {class:"#"}) %>
-  <%= f.collection_select(:genre_id, Genre.all, :id, :name, {prompt: "---"}, {class:"#"}) %>
-<div class="field" id="star">
-  <%= f.hidden_field :rate, id: :star %>
-  </div>
-  
-  <script>
-  $('#star').raty({
-  size     : 36,
-  starOff: '<%= asset_path('star-off.png') %>',
-  starOn : '<%= asset_path('star-on.png') %>',
-  starHalf:'<%= asset_path('star-half.png') %>',
-  scoreName: 'comic[rate]',
-  half: true
-        });
-  </script>
 
-  <%= f.submit "送信" %>
-  <div id="image-list"></div>
+<h1 class="new-title">編集しちゃいましょう！</h1>
+<%= link_to  "TOPに戻る", root_path %>
+ <%= form_with model: @comic, local: true do |f| %>
+
+<div class="new-form">
+
+  <div class="new-image">
+  <p>写真を入れちゃいましょう！</p>
+    <%= f.file_field :image, id:"image" %>
+    <div id="image-list"></div>
+  </div>
+
+ <div class="new-form2">
+      <div class=""><%= f.text_area :name, class:"form-parts", id:"#", placeholder:"タイトル" %></div>
+      <div class=""><%= f.text_field :author, class:"form-parts", id:"#", placeholder:"作者" %></div>
+      <div class=""><%= f.text_field :volume, class:"form-parts", id:"#", placeholder:"巻数" %></div>
+      <div class=""><%= f.collection_select(:magazine_id, Magazine.all, :id, :name, {prompt: "連載雑誌"}, {class:"form-parts"}) %></div>
+      <div class=""><%= f.collection_select(:genre_id, Genre.all, :id, :name, {prompt: "ジャンル"}, {class:"form-parts"}) %></div>
+      <div class="field form-part" id="star">
+      評価：
+      <%= f.hidden_field :rate, id: :star %>
+      </div>
+      
+      <script>
+      $('#star').raty({
+      size     : 36,
+      starOff: '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf:'<%= asset_path('star-half.png') %>',
+      scoreName: 'comic[rate]',
+            });
+      </script>
+
+      <div ><%= f.submit "送信" ,class:"form-parts" %></div>
+  </div>
  <% end %>
 </div>
-<%= link_to  "戻る", root_path %>

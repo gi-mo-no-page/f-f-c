@@ -1,22 +1,28 @@
-<h1>マイページ</h1>
-<% if @profile != nil %>
-<div><%= image_tag @profile.image.variant(resize:'70x70') %></div>
-<% end %>
-<div><%= "ユーザー：#{@user.nickname}" %></div>
-<div><%= "Email：#{@user.email}" %></div>
-<%= link_to  "ユーザー情報の編集", edit_user_path %>
+<h1 class="new-title">マイページ</h1>
+<%= link_to  "TOPにもどる", root_path %>
 
-<p>[プロフィール]</p>
+<div class="my-page">
+<div class="user">
 <% if @profile != nil %>
-  <div><%= "自己紹介：#{@profile.introduction}" %></div>
-  <div><%= "好きなマンガ：#{@profile.best_comic}" %></div>
-  <div><%= "好きなジャンル：#{@profile.like_category}" %></div>
+<div><%= image_tag @profile.image.variant(resize:'200x200'),class:"rounded-circle"%></div>
+<% end %>
+<div class="mypage-list"><%= "ユーザー名：#{@user.nickname}" %></div>
+<div class="mypage-list"><%= "Email：#{@user.email}" %></div>
+<%= link_to  "ユーザー情報の編集", edit_user_path %>
+</div>
+
+<div class="profile">
+<p class ="profi">[プロフィール]</p>
+<% if @profile != nil %>
+  <div class="mypage-list"><%= "自己紹介：#{@profile.introduction}" %></div>
+  <div class="mypage-list"><%= "好きなマンガ：#{@profile.best_comic}" %></div>
+  <div class="mypage-list"><%= "好きなジャンル：#{@profile.like_category}" %></div>
 <% else %>
-  <p>プロフィールを登録してね！</p>
+  <p class="mypage-list">プロフィールを登録してね！</p>
 <% end %>
 <% if @profile = nil %>
 <%= link_to  "プロフィール登録", new_user_profile_path(@user.id) %>
 <% end %>
-
 <%= link_to  "プロフィール編集", edit_user_profile_path(@user.id) %>
-<%= link_to  "もどる", root_path %>
+</div>
+</div>

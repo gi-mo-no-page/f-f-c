@@ -1,11 +1,11 @@
-<h1>編集ページ</h1>
+<h1 class="new-title">編集しちゃいましょう！</h1>
 
 <div>
  <%= form_with model: @user, local: true do |f| %>
-  <%= f.text_field :nickname, class:"#", id:"#", placeholder:"ニックネーム" %>
-  <%= f.text_field :email, class:"#", id:"#", placeholder:"メール" %>
-  <%= f.text_field :password, class:"#", id:"#", placeholder:"パスワード" %>
-  <%= f.submit "更新" %>
+  <%= f.text_field :nickname, class:"form-parts", placeholder:"ニックネーム" %>
+  <%= f.text_field :email, class:"form-parts", placeholder:"メール" %>
+  <%= f.text_field :password, class:"form-parts", placeholder:"パスワード" %>
+  <%= f.submit "更新",class:"form-parts" %>
  <% end %>
 </div>
 
