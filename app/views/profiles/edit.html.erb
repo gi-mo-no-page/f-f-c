@@ -1,6 +1,6 @@
 <h1 class="new-title">編集しちゃいましょう！</h1>
 <div class="prof">
- <%= form_with model: [@user,@profile], url: user_profile_path, local: true do |f| %>
+ <%= form_with model: @profile, url: profile_path, local: true do |f| %>
   <div><%= f.file_field :image, class:"form-parts" %></div>
  <div id="image-list"></div>
   <%= f.text_area :introduction, class:"form-parts",  placeholder:"自己紹介" %>

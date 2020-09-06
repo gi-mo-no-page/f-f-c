@@ -21,10 +21,6 @@
   <p class="mypage-list">プロフィールを登録してね！</p>
 <% end %>
 
-<% if @profile != nil %>
-<%= link_to  "プロフィール編集", edit_user_profile_path(@user.id) %>
-<% else %>
-<%= link_to  "プロフィール登録", new_user_profile_path(@user.id) %>
-<% end %>
+<%# link_to  "プロフィール編集", edit_profile_path(@user.id) %>
 </div>
 </div>
