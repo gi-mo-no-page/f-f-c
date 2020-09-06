@@ -1,5 +1,5 @@
 <h1 class="new-title">編集しちゃいましょう！</h1>
-
+<div class="prof">
  <%= form_with model: [@user,@profile], url: user_profile_path, local: true do |f| %>
   <div><%= f.file_field :image, class:"form-parts" %></div>
  <div id="image-list"></div>
@@ -9,3 +9,4 @@
   <%= f.submit "更新",class:"form-parts" %>
   <%= link_to  "もどる", user_path %>
  <% end %>
+</div>

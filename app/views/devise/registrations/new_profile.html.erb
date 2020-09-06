@@ -1,6 +1,6 @@
 <h1 class="new-title">プロフィール登録しちゃいましょう！</h1>
 <div class="prof">
- <%= form_with model: [@user,@profile], url: user_profiles_path, local: true do |f| %>
+ <%= form_for(@profile, url: plofiles_path) do |f| %>
   <div><%= f.file_field :image, id:"image", class:"form-parts" %></div>
   <div id="image-list"></div>
   <div><%= f.text_area :introduction, class:"form-parts", id:"#", placeholder:"自己紹介" %></div>

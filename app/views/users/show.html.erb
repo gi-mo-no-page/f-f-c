@@ -3,7 +3,7 @@
 
 <div class="my-page">
 <div class="user">
-<% if @profile != nil %>
+<% if @profile %>
 <div><%= image_tag @profile.image.variant(resize:'200x200'),class:"rounded-circle"%></div>
 <% end %>
 <div class="mypage-list"><%= "ユーザー名：#{@user.nickname}" %></div>
@@ -20,9 +20,11 @@
 <% else %>
   <p class="mypage-list">プロフィールを登録してね！</p>
 <% end %>
-<% if @profile = nil %>
+
+<% if @profile != nil %>
+<%= link_to  "プロフィール編集", edit_user_profile_path(@user.id) %>
+<% else %>
 <%= link_to  "プロフィール登録", new_user_profile_path(@user.id) %>
 <% end %>
-<%= link_to  "プロフィール編集", edit_user_profile_path(@user.id) %>
 </div>
 </div>

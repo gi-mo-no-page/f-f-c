@@ -4,7 +4,7 @@ class CreateProfiles < ActiveRecord::Migration[6.0]
       t.text :introduction
       t.string :best_comic
       t.string :like_category
-      t.integer :user_id          , null:false, foreigh_key:true
+      t.references :user
       t.timestamps
     end
   end

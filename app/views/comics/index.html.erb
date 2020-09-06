@@ -6,7 +6,8 @@
    <% if user_signed_in? %>
       <li class="side-list"><%= link_to "#{current_user.nickname}さん", user_path(current_user.id) %></li>
     <% else %>
-      <li>ログインしたらマイページにいけます</li>
+      <li>ログインすると<br>
+      投稿したりマイページにいけたりしますよ</li>
     <% end %>
      <li class="side-list"><%= link_to  "投稿する", new_comic_path %></li>
      <li class="side-list"><%= link_to  "カテゴリー", categories_path %></li>
