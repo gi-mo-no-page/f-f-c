@@ -1,11 +1,18 @@
 <h1 class="new-title">プロフィール登録しちゃいましょう！</h1>
 <div class="prof">
  <%= form_for(@profile, url: plofiles_path) do |f| %>
+    <%= f.label :プロフ画像 %><br />
   <div><%= f.file_field :image, id:"image", class:"form-parts" %></div>
   <div id="image-list"></div>
-  <div><%= f.text_area :introduction, class:"form-parts", id:"#", placeholder:"自己紹介" %></div>
-  <div><%= f.text_field :like_category, class:"form-parts", id:"#", placeholder:"好きなジャンル" %></div>
-  <div><%= f.text_field :best_comic, class:"form-parts", id:"#", placeholder:"一番好きなコミックス" %></div>
+
+    <%= f.label :自己紹介 %><br />
+  <div><%= f.text_area :introduction, class:"form-parts", id:"#", placeholder:"思うままに入力してください" %></div>
+    <%= f.label :好きなジャンル %><br />
+  <div><%= f.text_field :like_category, class:"form-parts", id:"#", placeholder:"例）スポーツ系" %></div>
+
+    <%= f.label :一番好きなコミックス %><br />
+  <div><%= f.text_field :best_comic, class:"form-parts", id:"#", placeholder:"例）ドラゴンボール" %></div>
+
   <div><%= f.submit "登録",class:"form-parts" %></div>
  <% end %>
   

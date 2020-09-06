@@ -3,9 +3,7 @@
 
 <div class="my-page">
 <div class="user">
-<% if @profile %>
-<div><%= image_tag @profile.image.variant(resize:'200x200'),class:"rounded-circle"%></div>
-<% end %>
+  <div><%= image_tag @profile.image.variant(resize:'200x200'),class:"rounded-circle"%></div>
 <div class="mypage-list"><%= "ユーザー名：#{@user.nickname}" %></div>
 <div class="mypage-list"><%= "Email：#{@user.email}" %></div>
 <%= link_to  "ユーザー情報の編集", edit_user_path %>
@@ -13,14 +11,8 @@
 
 <div class="profile">
 <p class ="profi">[プロフィール]</p>
-<% if @profile != nil %>
   <div class="mypage-list"><%= "自己紹介：#{@profile.introduction}" %></div>
   <div class="mypage-list"><%= "好きなマンガ：#{@profile.best_comic}" %></div>
   <div class="mypage-list"><%= "好きなジャンル：#{@profile.like_category}" %></div>
-<% else %>
-  <p class="mypage-list">プロフィールを登録してね！</p>
-<% end %>
-
-<%# link_to  "プロフィール編集", edit_profile_path(@user.id) %>
 </div>
 </div>
