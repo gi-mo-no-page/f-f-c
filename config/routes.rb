@@ -6,8 +6,9 @@ Rails.application.routes.draw do
     get 'plofiles', to: 'users/registrations#new_profile'
     post 'plofiles', to: 'users/registrations#create_profile'
   end
-  resources :users, only: [:show, :edit, :update]
-  resources :profiles, only: [:edit, :update, :destroy]
+  resources :users, only: [:show, :edit, :update] do
+    resources :profiles, only: [:edit, :update, :destroy]
+  end
   resources :categories, only: [:index, :show]
   resources :comics do
     resources :posts, only: :create

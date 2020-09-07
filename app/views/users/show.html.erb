@@ -3,7 +3,11 @@
 
 <div class="my-page">
 <div class="user">
+<% if @profile.image.present? %>
   <div><%= image_tag @profile.image.variant(resize:'200x200'),class:"rounded-circle"%></div>
+<% else %>
+    <p>画像はありません</p>
+<% end %>
 <div class="mypage-list"><%= "ユーザー名：#{@user.nickname}" %></div>
 <div class="mypage-list"><%= "Email：#{@user.email}" %></div>
 <%= link_to  "ユーザー情報の編集", edit_user_path %>
